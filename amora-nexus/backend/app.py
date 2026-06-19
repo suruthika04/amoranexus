@@ -107,13 +107,17 @@ def register():
             "createdAt": doc["createdAt"].isoformat()
         }
 
-        requests.post(
-            "https://amoranexus.app.n8n.cloud/webhook/cff7aab5-00f4-4e81-bfcd-ba3b5420ca28",
-            json=webhook_data
-        )
+        try:
+            requests.post(
+                "https://amoranexus.app.n8n.cloud/webhook/cff7aab5-00f4-4e81-bfcd-ba3b5420ca28",
+                json=webhook_data,
+                timeout=3
+            )
+        except Exception as webhook_error:
+            print("Webhook Error:", webhook_error)
 
         return jsonify({
-            "message": "Registration successful!"
+            "message": "Registration successful! Meeting details will be shared in the WhatsApp group. Please make sure you have joined the group."
         }), 201
 
     except Exception as e:
@@ -121,7 +125,6 @@ def register():
         return jsonify({
             "message": str(e)
         }), 500
-
 # ─── Get All Registrations (Admin) ────────────────
 @app.route("/api/registrations", methods=["GET"])
 @require_admin
