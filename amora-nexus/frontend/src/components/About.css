@@ -1,0 +1,256 @@
+/* ── About Section ── */
+.about {
+  background: var(--navy-900);
+  overflow: hidden;
+  position: relative;
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* ── Reveal animations ── */
+.reveal-up-init {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-active {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ── Text Side ── */
+.about__title {
+  margin-bottom: 24px;
+}
+
+.about__desc {
+  color: var(--gray-400);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.about__pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.about__pillar {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 22px;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.about__pillar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  color: var(--blue-400);
+  flex-shrink: 0;
+  transition: all var(--transition-base);
+}
+
+.about__pillar:hover .about__pillar-icon {
+  background: rgba(37, 99, 235, 0.22);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.about__pillar-title {
+  font-weight: 600;
+  color: var(--white);
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.about__pillar-desc {
+  font-size: 0.83rem;
+  color: var(--gray-400);
+  line-height: 1.55;
+}
+
+/* ── Founder Card ── */
+.about__founder-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.about__ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  height: 380px;
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  border-radius: 50%;
+  animation: rotate-slow 20s linear infinite;
+  pointer-events: none;
+}
+.about__ring::before {
+  content: '';
+  position: absolute;
+  top: -5px; left: 50%;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--blue-500);
+  box-shadow: 0 0 12px var(--blue-400);
+}
+
+.about__founder {
+  padding: 40px 36px;
+  text-align: center;
+  width: 100%;
+  max-width: 380px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Avatar ── */
+.about__avatar {
+  position: relative;
+  display: inline-flex;
+  margin-bottom: 20px;
+}
+
+.about__avatar-inner {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 40px rgba(37, 99, 235, 0.4);
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.about__avatar-initials {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.about__avatar-badge {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  border: 2px solid var(--navy-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+}
+
+.about__founder-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.about__founder-title {
+  font-size: 0.85rem;
+  color: var(--blue-400);
+  margin-bottom: 20px;
+}
+
+.about__roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.about__founder-quote {
+  padding: 16px;
+  background: rgba(37, 99, 235, 0.06);
+  border-left: 3px solid var(--blue-500);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.about__founder-quote p {
+  font-size: 0.875rem;
+  color: var(--gray-300);
+  line-height: 1.65;
+  font-style: italic;
+}
+
+.about__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--glass-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.about__metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 8px;
+  background: var(--navy-800);
+  transition: background var(--transition-fast);
+}
+
+.about__metric:hover { background: var(--navy-700); }
+
+.about__metric-val {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.about__metric-label {
+  font-size: 0.72rem;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  .about__founder { max-width: 100%; }
+  .about__ring { display: none; }
+}
