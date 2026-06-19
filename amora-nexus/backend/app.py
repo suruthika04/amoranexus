@@ -106,10 +106,21 @@ def register():
         result = registrations_col.insert_one(doc)
         print("Inserted ID:", result.inserted_id)
 
-        # Trigger n8n webhook
+        # Send data to n8n
+        webhook_data = {
+            "fullName": doc["fullName"],
+            "email": doc["email"],
+            "phone": doc["phone"],
+            "college": doc["college"],
+            "department": doc["department"],
+            "yearOfStudy": doc["yearOfStudy"],
+            "city": doc["city"],
+            "createdAt": doc["createdAt"].isoformat()
+        }
+
         requests.post(
             "https://amoranexus.app.n8n.cloud/webhook-test/cff7aab5-00f4-4e81-bfcd-ba3b5420ca28",
-            json=doc
+            json=webhook_data
         )
 
         return jsonify({
@@ -117,6 +128,7 @@ def register():
         }), 201
 
     except Exception as e:
+        print("Error:", str(e))
         return jsonify({
             "message": str(e)
         }), 500
