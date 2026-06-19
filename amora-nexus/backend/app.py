@@ -14,7 +14,7 @@ env_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path=env_path)
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app)
 
 # ─── MongoDB Connection ───────────────────────────
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/amora_nexus")
