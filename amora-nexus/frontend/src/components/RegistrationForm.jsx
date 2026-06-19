@@ -28,7 +28,7 @@ export default function RegistrationForm() {
     console.log("Submitting:", form);
 
     try {
-      const res = await fetch('http://localhost:5000/api/register', {
+      const res = await fetch('https://amoranexus-1.onrender.com/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
