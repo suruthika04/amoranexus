@@ -75,17 +75,6 @@ def register():
         if not data.get(field, "").strip():
             return jsonify({"message": f"{field} is required"}), 400
 
-    # Check duplicate email
-    if registrations_col is not None:
-        existing = registrations_col.find_one({
-            "email": data["email"].lower().strip()
-        })
-
-        if existing:
-            return jsonify({
-                "message": "This email is already registered. Check your WhatsApp for updates!"
-            }), 409
-
     doc = {
         "fullName": data.get("fullName", "").strip(),
         "email": data.get("email", "").lower().strip(),
