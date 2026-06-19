@@ -108,7 +108,7 @@ def register():
         }
 
         requests.post(
-            "https://amoranexus.app.n8n.cloud/webhook-test/cff7aab5-00f4-4e81-bfcd-ba3b5420ca28",
+            "https://amoranexus.app.n8n.cloud/webhook/cff7aab5-00f4-4e81-bfcd-ba3b5420ca28",
             json=webhook_data
         )
 
