@@ -9,6 +9,8 @@ from bson import ObjectId
 from bson.json_util import dumps
 import openpyxl
 from dotenv import load_dotenv
+import requests
+
 
 env_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path=env_path)
@@ -76,6 +78,7 @@ def register():
         existing = registrations_col.find_one({"email": data["email"].lower().strip()})
         if existing:
             return jsonify({"message": "This email is already registered. Check your WhatsApp for updates!"}), 409
+ 
 
     doc = {
         "fullName": data.get("fullName", "").strip(),
@@ -92,11 +95,18 @@ def register():
         return jsonify({"message": "Database connection failed. Please try again later."}), 500
 
     try:
-        result = registrations_col.insert_one(doc)
-        print("Inserted ID:", result.inserted_id)
-        return jsonify({"message": "Registration successful!"}), 201
+    result = registrations_col.insert_one(doc)
+    print("Inserted ID:", result.inserted_id)
+
+    requests.post(
+        "https://amoranexus.app.n8n.cloud/webhook-test/cff7aab5-00f4-4e81-bfcd-ba3b5420ca28",
+        json=doc
+    )
+
+    return jsonify({"message": "Registration successful!"}), 201
+
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+    return jsonify({"message": str(e)}), 500
 
 
 # ─── Get All Registrations (Admin) ────────────────
